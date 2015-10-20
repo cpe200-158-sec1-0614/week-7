@@ -13,6 +13,7 @@ namespace twozerofoureight
     public partial class TwoZeroFourEightView : Form, View
     {
         Model model;
+        Show s;
         Controller controller;
        
         public TwoZeroFourEightView()
@@ -23,11 +24,13 @@ namespace twozerofoureight
             controller = new TwoZeroFourEightController();
             controller.AddModel(model);
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            s = new Show(model);
         }
 
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel) m).GetBoard());
+            label2.Text = Convert.ToString(((TwoZeroFourEightModel)m).getscore());
         }
 
         private void UpdateTile(Label l, int i)
@@ -97,5 +100,10 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
 
+        private void TwoZeroFourEightView_Load(object sender, EventArgs e)
+        {
+            s.Enabled = true;
+            s.Visible = true;
+        }
     }
 }
